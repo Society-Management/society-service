@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SQLDelete(sql = "UPDATE society SET deleted_at = NOW() WHERE id = ?")
-@Where(clause = "deleted_at IS NULL")
+//@Where(clause = "deleted_at IS NULL")
 public class Society implements Serializable {
 
     @Id

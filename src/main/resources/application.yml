@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 SECRET_KEY: TaK+HaV^uvCHEFsEVfypW#7g9^k*Z8$V
 spring:
   datasource:
