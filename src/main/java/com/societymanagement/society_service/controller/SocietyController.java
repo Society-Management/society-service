@@ -11,7 +11,7 @@ public class SocietyController {
 
     @GetMapping
     public String getUser(){
-        return "Admin"+CurrentUser.getUserId();
+        return "Admin"+ CurrentUser.getUserId();
     }
 }
 
