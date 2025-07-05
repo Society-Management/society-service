@@ -7,39 +7,43 @@ import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
-//* Self Note * : MappedSuperClass - This class is a base entity that can be extended by other entities, and not a standalone entity which means,
-// it has no table in the database.
 @MappedSuperclass
 @FilterDef(name = "societyFilter", parameters = @ParamDef(name = "societyId", type = Long.class))
 @Filter(name = "societyFilter", condition = "society_id = :societyId")
-public class BaseEntityV1 {
+public class BaseEntityV1 implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long societyId;
-    private String createdBy;
-    private String updatedBy;
-    private String createdAt;
-    private String updatedAt;
-    private String deletedAt; // This field is used for soft deletion
 
-    @PrePersist //* Self Note * : Automatically called before the entity is created
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime deletedAt;
+
+    @PrePersist
     public void prePersist() {
-        long currentTime = System.currentTimeMillis();
-        this.createdAt = String.valueOf(currentTime);
-        this.updatedAt = String.valueOf(currentTime);
+        LocalDateTime now = LocalDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
     }
 
-    @PreUpdate //* Self Note * : Automatically called before the entity is updated
+    @PreUpdate
     public void preUpdate() {
-        this.updatedAt = String.valueOf(System.currentTimeMillis());
+        this.updatedAt = LocalDateTime.now();
     }
 
-    @PreRemove //* Self Note * : Automatically called before the entity is deleted
+    @PreRemove
     public void preRemove() {
-        this.deletedAt = String.valueOf(System.currentTimeMillis());
+        this.deletedAt = LocalDateTime.now();
     }
-
 }
