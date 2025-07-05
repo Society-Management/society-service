@@ -5,13 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(exclude = { org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration.class })
+@SpringBootApplication(
+		scanBasePackages = "com.societymanagement.society_service",
+		exclude = {org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration.class}
+)
 @EnableJpaRepositories
 @EnableFeignClients
 public class SocietyServiceApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(SocietyServiceApplication.class, args);
 	}
-
 }

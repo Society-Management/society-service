@@ -6,6 +6,7 @@ import com.societymanagement.society_service.entity.Society;
 import com.societymanagement.society_service.exception.CustomException;
 import com.societymanagement.society_service.repository.SocietyRepository;
 import com.societymanagement.society_service.utils.CurrentUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ public class SocietyService {
     private final SocietyRepository societyRepository;
     private final SocietyMapper societyMapper;
 
+    @Autowired
     public SocietyService(SocietyRepository societyRepository, SocietyMapper societyMapper) {
         this.societyRepository = societyRepository;
         this.societyMapper = societyMapper;
